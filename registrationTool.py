@@ -91,11 +91,14 @@ class CAPPRegistration :
         btnYView.set_on_clicked(self._on_btn_y_view)
         btnZView = gui.Button("ZView")
         btnZView.set_on_clicked(self._on_btn_z_view)
+        btnReset = gui.Button("Reset")
+        btnReset.set_on_clicked(self._on_btn_reset)
 
         cameraLayout = gui.Horiz()
         cameraLayout.add_child(btnXView)
         cameraLayout.add_child(btnYView)
         cameraLayout.add_child(btnZView)
+        cameraLayout.add_child(btnReset)
 
         vert = gui.Vert()
         vert.add_child(cameraLayout)
@@ -237,6 +240,11 @@ class CAPPRegistration :
         boxCenter = bbox.get_center()
         camPosZView = scoUtil.CScoMath.vec_add(boxCenter, np.array([0, 0, self.s_cameraDist]))
         self.m_widget.scene.camera.look_at(boxCenter, camPosZView, [0, 1, 0])
+    def _on_btn_reset(self) :
+        self.m_listEditOffset[0].text_value = f"{0}"
+        self.m_listEditOffset[1].text_value = f"{0}"
+        self.m_listEditOffset[2].text_value = f"{0}"
+        self.state_exe()
     def _on_btn_x_dec(self) :
         offsetX = int(self.m_listEditOffset[0].text_value)
         offsetX -= 1
