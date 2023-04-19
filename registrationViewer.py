@@ -260,8 +260,8 @@ class CAPPRegistration :
 if __name__ == '__main__' :
     #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_9"
     #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_10"
-    #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_11"
-    dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_12"
+    dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_11"
+    #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_12"
     #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_13"
     #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_14"
     #dataPath = "/Users/scosco/Desktop/scosco/hutom/Project/Registration/Project/Data/01009ug_15"

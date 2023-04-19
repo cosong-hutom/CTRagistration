@@ -40,7 +40,7 @@ class CAPPRegistration :
     s_ppPath = "pp"
 
     def __init__(self, title : str, width : int, height : int, dataPath : str) -> None:
-
+        self.m_bExit = False
         self.m_title = title
         self.m_width = width
         self.m_height = height
@@ -84,6 +84,8 @@ class CAPPRegistration :
         self.m_widget = gui.SceneWidget()
         # scene 구성
         self.m_widget.scene = rendering.Open3DScene(self.m_win.renderer)
+        self.m_widget.set_on_key(self._on_key)
+        #self.m_widget.set_on_mouse(self._on_mouse)
     def init_selection_layout(self) :
         btnXView = gui.Button("XView")
         btnXView.set_on_clicked(self._on_btn_x_view)
@@ -168,8 +170,16 @@ class CAPPRegistration :
 
 
     def process(self) :
-        self.m_app.run()
+        #self.m_app.run()
 
+        while self.m_app.run_one_tick() == True :
+            if self.m_bExit == True :
+                self.m_app.quit()
+
+            # rendering loop
+        
+        self.clear()
+        
 
     def update_scene(self) :
         # flag setting 
@@ -293,6 +303,30 @@ class CAPPRegistration :
         npMatEAPToPP = self.m_engineReg.NowMatEAPToPP
         self.update_scene_info(True, self.m_engineReg.eCT, self.m_mtrlEAP, npMatEAPToPP)
         self.update_scene_info_aabb(True, self.m_engineReg.eCT, self.m_mtrlEAP, npMatEAPToPP)
+
+    def _on_key(self, e):
+        '''
+        if e.key == gui.KeyName.SPACE:
+            if e.type == gui.KeyEvent.UP:  # check UP so we default to DOWN
+                print("[debug] SPACE released")
+            else:
+                print("[debug] SPACE pressed")
+            return gui.Widget.EventCallbackResult.HANDLED
+        if e.key == gui.KeyName.W:  # eats W, which is forward in fly mode
+            print("[debug] Eating W")
+            return gui.Widget.EventCallbackResult.CONSUMED
+        '''
+        
+        if e.key == gui.KeyName.Q :
+            print("pressed Q")
+            self.m_bExit = True
+            return gui.Widget.EventCallbackResult.CONSUMED
+        
+        return gui.Widget.EventCallbackResult.IGNORED
+    def _on_mouse(e):
+        if e.type == gui.MouseEvent.Type.BUTTON_DOWN:
+            print("[debug] mouse:", (e.x, e.y))
+        return gui.Widget.EventCallbackResult.IGNORED
 
     def state_init(self) :
         #self.clear()
